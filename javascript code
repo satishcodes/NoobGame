@@ -1,0 +1,98 @@
+highscore = document.getElementById('hishscore')
+if (localStorage.length != 0) {
+  highscore.innerHTML = 'highScore: ' + localStorage['Highscore'];
+} else {
+  highscore.innerHTML = ''
+}
+
+let ProgressBar = document.getElementById("file");
+let Scroe = document.getElementById("score");
+let newScore = 0;
+let redPadCount = 0;
+let timeleft = 30;
+let destroyTime = 5;
+let gameOver = false;
+let startFunction = true;
+let Pads = initializePads();
+
+function initializePads() {
+  let pads = {};
+  for (let i = 1; i <= 25; i++) {
+    pads[i] = document.getElementById(i.toString());
+  }
+  return pads;
+}
+
+function main() {
+  Scroe.innerText = newScore;
+  if (ProgressBar.value >= 100) {
+    timeleft = Math.min(timeleft + 5, 30);
+    ProgressBar.value = 0;
+  }
+}
+
+function GenerateRandomNumber() {
+  return Math.floor(Math.random() * 25) + 1;
+}
+
+function Clicked(Coordinate) {
+  if (!gameOver) {
+    if (Coordinate == pad1 || Coordinate == pad2 || Coordinate == pad3 || Coordinate == pad4 || Coordinate == pad5) {
+      handlePadClick(Coordinate);
+    } else if (Coordinate == redPad) {
+      handleRedPadClick();
+    }
+  }
+}
+
+function handlePadClick(Coordinate) {
+  Pads[Coordinate].style.backgroundColor = "white";
+  newScore++;
+  ProgressBar.value += 3;
+  main();
+  updatePads(Coordinate);
+}
+
+function handleRedPadClick() {
+  redPadCount = 0;
+  newScore = Math.max(newScore - 15, 0);
+  timeleft = Math.max(timeleft - 3, 0);
+  ProgressBar.value = 0;
+  main();
+}
+
+function updatePads(clickedPad) {
+  // Logic for updating the pads
+}
+
+function CreateRedPad() {
+  if (redPadCount == 0) {
+    redPad = GenerateRandomNumber();
+    Pads[redPad].style.backgroundColor = "red";
+    redPadCount = 1;
+  }
+}
+
+setInterval(function () {
+  if (timeleft <= 0) {
+    gameOver = true;
+    if (localStorage['Highscore'] < newScore) {
+      localStorage.setItem('Highscore', newScore);
+    }
+  } else {
+    timeleft--;
+    destroyRedPad();
+  }
+}, 1000);
+
+function destroyRedPad() {
+  if (redPadCount == 1) {
+    destroyTime--;
+    if (destroyTime <= 0) {
+      Pads[redPad].style.backgroundColor = "white";
+      redPadCount = 0;
+      destroyTime = 5;
+      setTimeout(CreateRedPad, Math.random() * 100 * 100);
+    }
+  }
+}
