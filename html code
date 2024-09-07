@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>idk what to call this game :( </title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="Uper-Hand" class="Uper-Hand">
+      <h6>Complete the bar below to gain extra 5 seconds</h6><br>
+      <h6><b>*****Avoid Red Pads*****</b></h6>
+      <h3 style="color: white; font-family: sans-serif; margin-top:20px" id="hishscore">High Score: </h3>
+      <h2 id="score">69</h2>
+      <h5 id="CountDown">Time left: 30</h5>
+      <progress name="Time" id="TimeBar" value="40" max="30"></progress><br>
+      <progress id="file" value="35" max="100"> 32% </progress>
+    </div>
+    <br>
+    <div class="Grid-Board">
+      <ul class="Grids">
+        <li>
+          <button id="1" value="1" onclick="Clicked(value);"></button>
+          <button id="2" value="2" onclick="Clicked(value);"></button>
+          <button id="3" value="3" onclick="Clicked(value);"></button>
+          <button id="4" value="4" onclick="Clicked(value);"></button>
+          <button id="5" value="5" onclick="Clicked(value);"></button>
+        </li>
+        <li>
+          <button id="6" value="6" onclick="Clicked(value);"></button>
+          <button id="7" value="7" onclick="Clicked(value);"></button>
+          <button id="8" value="8" onclick="Clicked(value);"></button>
+          <button id="9" value="9" onclick="Clicked(value);"></button>
+          <button id="10" value="10" onclick="Clicked(value);"></button>
+        </li>
+        <li>
+          <button id="11" value="11" onclick="Clicked(value);"></button>
+          <button id="12" value="12" onclick="Clicked(value);"></button>
+          <button id="13" value="13" onclick="Clicked(value);"></button>
+          <button id="14" value="14" onclick="Clicked(value);"></button>
+          <button id="15" value="15" onclick="Clicked(value);"></button>
+        </li>
+        <li>
+          <button id="16" value="16" onclick="Clicked(value);"></button>
+          <button id="17" value="17" onclick="Clicked(value);"></button>
+          <button id="18" value="18" onclick="Clicked(value);"></button>
+          <button id="19" value="19" onclick="Clicked(value);"></button>
+          <button id="20" value="20" onclick="Clicked(value);"></button>
+        </li>
+        <li>
+          <button id="21" value="21" onclick="Clicked(value);"></button>
+          <button id="22" value="22" onclick="Clicked(value);"></button>
+          <button id="23" value="23" onclick="Clicked(value);"></button>
+          <button id="24" value="24" onclick="Clicked(value);"></button>
+          <button id="25" value="25" onclick="Clicked(value);"></button>
+        </li>
+      </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
