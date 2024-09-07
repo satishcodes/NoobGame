@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>idk what to call this game :( </title>
+  <style>
+    *{
+  padding: 0;
+  margin: 0;
+  }
+  body{
+    background-color: rgb(65, 44, 102);
+  }
+  .Uper-Hand{
+    background-color: rgb(65, 44, 102);
+    height: 40vh;
+    max-height: 40vh;
+    text-align: center;
+  }
+  .Grid-Board{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 58vh;
+    background-color: rgb(48, 17, 85);
+  }
+  .Grids{
+    width: 65vw;
+    height: 55vh;
+    margin-left: 16vw;
+    padding: 5px 5px;
+    list-style-type: none;
+  }
+
+  button{
+    width: 12vw;
+    height: 12vw;
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: white;
+    transition: .2s
+  }
+  button:active{
+    background-color:rgb(0, 0, 0);
+    transform: scale(1.3);
+  }
+
+  h1{
+    color: white;
+    font-size: 20px;
+  }
+  h2{
+    color: rgb(255, 255, 255);
+    font-size: 60px;
+    font-family: sans-serif;
+    margin-top: 0;
+  }
+
+  progress{
+    width: 60%;
+    height: 40px;
+    transition: .5s;
+  }
+  #file{
+    width: 0%;
+  }
+  #TimeBar{
+    margin-top: 0;
+    width: 60%;
+  }
+  h5{
+    color: white;
+    font-family: sans-serif;
+    font-size: 20px;
+  }
+  .gameOver{
+    position:absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  h6{
+    color: white;
+    font-family: sans-serif;
+    font-size: 15px;
+  }
+
+  @media screen and (min-width: 1080px) {
+  
+    button {
+        width: 5vw;
+        height: 5vw;
+    }
+    .Grids {
+        width: 30%;
+        margin-left: 37%;
+    }
+    h2{
+        margin-top: 5%;
+    }
+    progress{
+        width: 50%;
+    }
+    #TimeBar{
+        width: 20%;
+    }
+    
+}
+  </style>
+</head>
+
+<body>
+    <div id="Uper-Hand" class="Uper-Hand">
+      <h6 >Complete the bar below to gain extra 5 seconds</h6><br>
+      <h6 ><b>*****Avoid Red Pads*****</b></h6>
+      <h3 style="color: white; font-family: sans-serif; margin-top:20px" id="hishscore">High Score: </h3>
+      <h2 id="score">69</h2>
+      <h5 id="CountDown">Time left: 30</h5>
+      <progress name="Time" id="TimeBar" value="40" max="30"></progress><br>
+      <progress id="file" value="35" max="100"> 32% </progress>
+    </div>
+    <br>
+    <div class="Grid-Board">
+      <ul class="Grids">
+        <li>
+          <button id="1" value="1" onclick="Clicked(value);"></button>
+          <button id="2" value="2" onclick="Clicked(value);"></button>
+          <button id="3" value="3" onclick="Clicked(value);"></button>
+          <button id="4" value="4" onclick="Clicked(value);"></button>
+          <button id="5" value="5" onclick="Clicked(value);"></button>
+        </li>
+        <li>
+          <button id="6" value="6" onclick="Clicked(value);"></button>
+          <button id="7" value="7" onclick="Clicked(value);"></button>
+          <button id="8" value="8" onclick="Clicked(value);"></button>
+          <button id="9" value="9" onclick="Clicked(value);"></button>
+          <button id="10" value="10" onclick="Clicked(value);"></button>
+
+        </li>
+        <li>
+          <button id="11" value="11" onclick="Clicked(value);"></button>
+          <button id="12" value="12" onclick="Clicked(value);"></button>
+          <button id="13" value="13" onclick="Clicked(value);"></button>
+          <button id="14" value="14" onclick="Clicked(value);"></button>
+          <button id="15" value="15" onclick="Clicked(value);"></button>
+        </li>
+        
+        <li>
+          <button id="16" value="16" onclick="Clicked(value);"></button>
+          <button id="17" value="17" onclick="Clicked(value);"></button>
+          <button id="18" value="18" onclick="Clicked(value);"></button>
+          <button id="19" value="19" onclick="Clicked(value);"></button>
+          <button id="20" value="20" onclick="Clicked(value);"></button>
+ 
+        </li>
+
+        <li>
+          <button id="21" value="21" onclick="Clicked(value);"></button>
+          <button id="22" value="22" onclick="Clicked(value);"></button>
+          <button id="23" value="23" onclick="Clicked(value);"></button>
+          <button id="24" value="24" onclick="Clicked(value);"></button>
+          <button id="25" value="25" onclick="Clicked(value);"></button>
+
+        </li>
+
+      </ul>
+    </div>
+
+    <script>
+
+     highscore = document.getElementById('hishscore')
+     if (localStorage.length != 0){
+      console.log('ggs');
+        highscore.innerHTML = 'highScore: '+ localStorage['Highscore'];
+     } else {
+      highscore.innerHTML = ''
+     }
+    
+
+
+        let ProgressBar = document.getElementById("file");
+        let Btn1 = document.getElementById("1");
+        let Btn2 = document.getElementById("2");
+        let Btn3 = document.getElementById("3");
+        let Btn4 = document.getElementById("4");
+        let Btn5 = document.getElementById("5");
+        let Btn6 = document.getElementById("6");
+        let Btn7 = document.getElementById("7");
+        let Btn8 = document.getElementById("8");
+        let Btn9 = document.getElementById("9");
+        let Btn10 = document.getElementById("10");
+        let Btn11 = document.getElementById("11");
+        let Btn12 = document.getElementById("12");
+        let Btn13 = document.getElementById("13");
+        let Btn14 = document.getElementById("14");
+        let Btn15 = document.getElementById("15");
+        let Btn16 = document.getElementById("16");
+        let Btn17 = document.getElementById("17");
+        let Btn18 = document.getElementById("18");
+        let Btn19 = document.getElementById("19");
+        let Btn20 = document.getElementById("20");
+        let Btn21 = document.getElementById("21");
+        let Btn22 = document.getElementById("22");
+        let Btn23 = document.getElementById("23");
+        let Btn24 = document.getElementById("24");
+        let Btn25 = document.getElementById("25");
+
+
+        Pads = {
+            "1": Btn1,
+            "2": Btn2,
+            "3": Btn3, 
+            "4": Btn4, 
+            "5": Btn5, 
+            "6": Btn6, 
+            "7": Btn7, 
+            "8": Btn8, 
+            "9": Btn9, 
+            "10": Btn10,
+            "11": Btn11,
+            "12": Btn12,
+            "13": Btn13, 
+            "14": Btn14, 
+            "15": Btn15, 
+            "16": Btn16, 
+            "17": Btn17, 
+            "18": Btn18, 
+            "19": Btn19, 
+            "20": Btn20,
+            "21": Btn21,
+            "22": Btn22,
+            "23": Btn23, 
+            "24": Btn24, 
+            "25": Btn25
+          }
+
+          
+          let pad1 = null;
+          let pad2 = null;
+          let pad3 = null;
+          let pad4 = null;
+          let pad5 = null;
+          let redPad = null;
+          redPadCount = 0;
+          
+          let startFunction = true;
+          let gameOver = false;
+          let selectedPad = null;
+          let Scroe = document.getElementById("score");
+          let newScore = 0;
+          let random = 13;
+          let pauseTime = 0;
+          ProgressBar.value = 0
+              
+          function changePad1(){
+            GenerateRandomNumber();
+            while (random == pad1 || random == pad2 || random == pad3 || random == pad4 || random == pad5 || random == redPad){
+              GenerateRandomNumber();
+            }
+            selectedPad = Pads[random];
+            selectedPad.style.backgroundColor = "black";
+            pad1 = random;
+            
+          }
+          function changePad2(){
+            GenerateRandomNumber();
+            while (random == pad1 || random == pad2 || random == pad3 || random == pad4 || random == pad5 || random == redPad){
+              GenerateRandomNumber();
+            }
+            selectedPad = Pads[random];
+            selectedPad.style.backgroundColor = "black";
+            pad2 = random;
+          }
+          function changePad3(){
+            GenerateRandomNumber();
+            while (random == pad1 || random == pad2 || random == pad3 || random == pad4 || random == pad5 || random == redPad){
+              GenerateRandomNumber();
+            }
+            selectedPad = Pads[random];
+            selectedPad.style.backgroundColor = "black";
+            pad3 = random;
+          }
+          function changePad4(){
+            GenerateRandomNumber();
+            while (random == pad1 || random == pad2 || random == pad3 || random == pad4 || random == pad5 || random == redPad){
+              GenerateRandomNumber();
+            }
+            selectedPad = Pads[random];
+            selectedPad.style.backgroundColor = "black";
+            pad4 = random;
+          }
+          function changePad5(){
+            GenerateRandomNumber();
+            while (random == pad1 || random == pad2 || random == pad3 || random == pad4 || random == pad5 || random == redPad){
+              GenerateRandomNumber();
+            }
+            selectedPad = Pads[random];
+            selectedPad.style.backgroundColor = "black";
+            pad5 = random;
+          }
+          changePad1();
+          changePad2();
+          changePad3();
+          changePad4();
+          changePad5();
+
+          if (startFunction){
+            pauseTime = Math.floor(Math.random() * 100 * 100) +1;
+            setTimeout(CreateRedPad, pauseTime)
+            CreateRedPad();
+            startFunction = false;
+            console.log("start function ended")
+          }
+          
+
+
+          function main(){
+              Scroe.innerText = newScore;
+              if (ProgressBar.value >= 100){
+                console.log('its time');
+                if (timeleft<=30){
+                  timeleft += 5;
+                }ProgressBar.value = 0;
+              }
+              
+          }
+ 
+        function GenerateRandomNumber(){
+            random = Math.floor(Math.random() * 100) +1
+            while (random > 25){
+            random = Math.floor(Math.random() * 100) +1
+            }
+            
+        }
+
+
+        function Clicked(Coordinate){
+          if (!gameOver){
+            if (Coordinate == pad1){
+              selectedPad = Pads[Coordinate]
+              selectedPad.style.backgroundColor = "white";
+              newScore += 1;
+              ProgressBar.value += 3;
+              main();
+              changePad1();
+            }
+            if(Coordinate == pad2){
+              selectedPad = Pads[Coordinate]
+              selectedPad.style.backgroundColor = "white";
+              newScore += 1;
+              ProgressBar.value += 3;
+              main();
+              changePad2();
+            }
+            if(Coordinate == pad3){
+              selectedPad = Pads[Coordinate]
+              selectedPad.style.backgroundColor = "white";
+              newScore += 1;
+              ProgressBar.value += 3;
+              main();
+              changePad3();
+            }
+            if(Coordinate == pad4){
+              selectedPad = Pads[Coordinate]
+              selectedPad.style.backgroundColor = "white";
+              newScore += 1;
+              ProgressBar.value += 3;
+              main();
+              changePad4();
+            }
+            if(Coordinate == pad5){
+              selectedPad = Pads[Coordinate]
+              selectedPad.style.backgroundColor = "white";
+              newScore += 1;
+              ProgressBar.value += 3;
+              main();
+              changePad5();
+            }
+            if(Coordinate == redPad){
+              redPadCount = 0;
+              console.log("thats a reed pad!");
+              selectedPad = Pads[Coordinate]
+              selectedPad.style.backgroundColor = "white";
+              if (newScore >= 15){
+                newScore -= 15;
+              } else {newScore = 0;}
+              
+              ProgressBar.value = 0;
+              if (timeleft >= 3){
+                timeleft -= 3;
+              } else {timeleft = 0}
+              
+              main();
+              pauseTime = Math.floor(Math.random() * 100 * 100) +1;
+              setTimeout(CreateRedPad, pauseTime)
+            }
+          }
+        }
+        
+
+        function CreateRedPad (){
+          if(redPadCount == 0){
+            GenerateRandomNumber();
+              while (random == pad1 || random == pad2 || random == pad3 || random == pad4 || random == pad5){
+                GenerateRandomNumber();
+              }
+              selectedPad = Pads[random];
+              selectedPad.style.backgroundColor = "red";
+              redPad = random;
+              redPadCount = 1;
+          }
+        }
+        
+        var destroyTime = 5;
+        var timeleft = 30;
+        var downloadTimer = setInterval(function(){
+          if(timeleft <= 0){
+            gameOver = true;
+            // setting a highscore
+            if (localStorage['Highscore'] < newScore){
+              localStorage.setItem('Highscore', newScore);
+            }
+            
+
+          } else {
+            document.getElementById("CountDown").innerHTML = "Time left: "+timeleft;
+            document.getElementById("TimeBar").value = timeleft;
+            
+            // Logic for red pad destruction
+            if (destroyTime <= 0) {
+              selectedPad = Pads[redPad]
+              selectedPad.style.backgroundColor = "white";
+              redPadCount -= 1;
+              pauseTime = Math.floor(Math.random() * 100 * 100) +1;
+              setTimeout(CreateRedPad, pauseTime)
+              
+              destroyTime = 5;
+            }
+            else{
+              
+              if (redPadCount == 1) {
+                destroyTime -= 1;
+              } else {destroyTime = 5;}
+            }
+          
+          }
+          timeleft -= 1;
+        }, 1000);
+
+        var i = 0;
+        function move() {
+          if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("file");
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+              if (width >= 80) {
+                clearInterval(id);
+                i = 0;
+              } else {
+                width++;
+                elem.style.width = width + "%";
+              }
+            }
+          }
+        }
+        move();
+    </script>
+</body>
+
+</html>
